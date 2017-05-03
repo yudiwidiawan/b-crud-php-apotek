@@ -15,7 +15,7 @@
 		$result = mysqli_query($mysqli, "SELECT * FROM login");
 	?>
 				
-		Welcome <?php echo $_SESSION['name'] ?> ! <a href='logout.php'>Logout</a><br/>
+		Welcome <?php echo $_SESSION['nama_supplier'] ?> ! <a href='logout.php'>Logout</a><br/>
 		<br/>
 		<a href='view.php'>View and Add Products</a>
 		<br/><br/>

@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
 		echo "<br/>";
 		echo "<a href='register.php'>Go back</a>";
 	} else {
-		mysqli_query($mysqli, "INSERT INTO supllier(kd_supplier, nama, notelp, alamat_kantor, password) VALUES('$kode', '$name', '$notelp', '$almt', md5('$pass'))")
+		mysqli_query($mysqli, "INSERT INTO supplier(kd_supplier, nama_supplier, no_telp, alamat_kantor, password) VALUES('$kode', '$name', '$notelp', '$almt', md5('$pass'))")
 			or die("Could not execute the insert query.");
 			
 		echo "Registration successfully";
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])) {
 			</tr>
 			<tr> 
 				<td>Alamat Kantor</td>
-				<td><input type="text" name="notelp"></td>
+				<td><input type="text" name="alamat"></td>
 			</tr>
 			<tr> 
 				<td>Password</td>

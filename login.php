@@ -24,7 +24,7 @@ if(isset($_POST['submit'])) {
 		$row = mysqli_fetch_assoc($result);
 		
 		if(is_array($row) && !empty($row)) {
-			$validuser = $row['kode_supplier'];
+			$validuser = $row['kd_supplier'];
 			$_SESSION['valid'] = $validuser;
 			$_SESSION['nama_supplier'] = $row['nama_supplier'];
 			$_SESSION['kd_supplier'] = $row['kd_supplier'];
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
 	<form name="form1" method="post" action="">
 		<table width="75%" border="0">
 			<tr> 
-				<td width="10%">kode_supplier</td>
+				<td width="10%">Kode_Supplier</td>
 				<td><input type="text" name="kode_supplier"></td>
 			</tr>
 			<tr> 
