@@ -17,33 +17,37 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 if(isset($_POST['Submit'])) {	
-	$name = $_POST['name'];
-	$qty = $_POST['qty'];
-	$price = $_POST['price'];
-	$loginId = $_SESSION['id'];
+	$kode_obat = $_POST['kode_obat'];
+	$nama_obat = $_POST['nama_obat'];
+	$jenis = $_POST['jenis'];
+	$harga = $_POST['harga'];
+	$loginId = $_SESSION['kd_supplier'];
 		
 	// checking empty fields
-	if(empty($name) || empty($qty) || empty($price)) {
+	if(empty($kode_obat) || empty($nama_obat) || empty($jenis) || empty($harga)) {
 				
-		if(empty($name)) {
+		if(empty($kode_obat)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 		
-		if(empty($qty)) {
+		if(empty($nama_obat)) {
 			echo "<font color='red'>Quantity field is empty.</font><br/>";
 		}
 		
-		if(empty($price)) {
+		if(empty($jenis)) {
 			echo "<font color='red'>Price field is empty.</font><br/>";
 		}
 		
+		if(empty($harga)) {
+			echo "<font color='red'>Price field is empty.</font><br/>";
+		}
 		//link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} else { 
 		// if all the fields are filled (not empty) 
 			
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO products(name, qty, price, login_id) VALUES('$name','$qty','$price', '$loginId')");
+		$result = mysqli_query($mysqli, "INSERT INTO obat(kode_obat, nama_obat, jenis, kd_supplier) VALUES('$kode_obat','$nama_obat','$jenis', '$loginId')");
 		
 		//display success message
 		echo "<font color='green'>Data added successfully.";
