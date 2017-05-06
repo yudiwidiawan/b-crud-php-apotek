@@ -11,11 +11,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for apotek
+DROP DATABASE IF EXISTS `apotek`;
 CREATE DATABASE IF NOT EXISTS `apotek` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `apotek`;
 
 
 -- Dumping structure for table apotek.obat
+DROP TABLE IF EXISTS `obat`;
 CREATE TABLE IF NOT EXISTS `obat` (
   `kode_obat` varchar(5) NOT NULL,
   `nama_obat` varchar(30) NOT NULL,
@@ -33,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `obat` (
 
 
 -- Dumping structure for table apotek.supplier
+DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
   `kd_supplier` varchar(5) NOT NULL,
   `nama_supplier` varchar(50) NOT NULL,
@@ -42,8 +45,10 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   PRIMARY KEY (`kd_supplier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table apotek.supplier: ~0 rows (approximately)
+-- Dumping data for table apotek.supplier: ~1 rows (approximately)
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+REPLACE INTO `supplier` (`kd_supplier`, `nama_supplier`, `no_telp`, `alamat_kantor`, `password`) VALUES
+	('SP001', 'Khalifah Falah', '087824574182', 'Jalan PHH Mustofa', '85064efb60a9601805dcea56ec5402f7');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
