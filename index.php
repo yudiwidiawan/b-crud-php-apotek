@@ -3,6 +3,7 @@
 <head>
 	<title>Homepage</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -26,7 +27,8 @@
 	}
 	?>
 	<div id="footer">
-		Created by <a href="https://samehadaku.net/" title="Samehadaku">Kelompok Elang</a>
+		Modified by Kelas B Matakuliah Responsi Rekayasa Web Itenas 2017<br/>
+		Created by <a href="https://dewacoding.wordpress.com/about/" title="Kurnia Ramadhan Putra">Kurnia Ramadhan Putra</a>
 	</div>
 </body>
 </html>
