@@ -11,7 +11,7 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM obat WHERE kd_supplier='".$_SESSION['kd_supplier']."'' ORDER BY kode_obat DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM obat WHERE kd_supplier='".$_SESSION['kd_supplier']."' ORDER BY kode_obat DESC");
 ?>
 
 <html>

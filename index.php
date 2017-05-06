@@ -26,7 +26,7 @@
 	}
 	?>
 	<div id="footer">
-		Created by <a href="https://dewacoding.wordpress.com/about/" title="Kurnia Ramadhan Putra">Kurnia Ramadhan Putra</a>
+		Created by <a href="https://samehadaku.net/" title="Samehadaku">Kelompok Elang</a>
 	</div>
 </body>
 </html>
