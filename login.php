@@ -2,10 +2,18 @@
 <html>
 <head>
 	<title>Login</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="javascript/jquery.min.js"></script>
+	<script src="javascript/main.js"></script>
 </head>
 
 <body>
-<a href="index.php">Home</a> <br />
+<div id="header" style="text-align: center;margin-bottom: 50px;">
+	<a href="index.php"><img src="images/apotek-b.png" alt="Apotek-B"/></a>
+</div>
+<div id="content">
 <?php
 include("connection.php");
 
@@ -14,9 +22,13 @@ if(isset($_POST['submit'])) {
 	$pass = mysqli_real_escape_string($mysqli, $_POST['password']);
 
 	if($kode_supplier == "" || $pass == "") {
-		echo "Either kode_supplier or password field is empty.";
-		echo "<br/>";
-		echo "<a href='login.php'>Go back</a>";
+		echo "<div id='account-form'>";
+		echo "<div class='alert alert-danger'>";
+		echo "Kode_supplier atau password kosong.";
+		echo "</div>";
+		echo "<br/><br/>";
+		echo "<a href='login.php'>Kembali </a>";
+		echo "</div>";
 	} else {
 		$result = mysqli_query($mysqli, "SELECT * FROM supplier WHERE kd_supplier='$kode_supplier' AND password=md5('$pass')")
 					or die("Could not execute the select query.");
@@ -29,9 +41,13 @@ if(isset($_POST['submit'])) {
 			$_SESSION['nama_supplier'] = $row['nama_supplier'];
 			$_SESSION['kd_supplier'] = $row['kd_supplier'];
 		} else {
-			echo "Invalid username or password.";
-			echo "<br/>";
-			echo "<a href='login.php'>Go back</a>";
+			echo "<div id='account-form'>";
+			echo "<div class='alert alert-danger'>";
+			echo "Kode_supplier atau password salah.";
+			echo "</div>";
+			echo "<br/><br/>";
+			echo "<a href='login.php'>Kembali </a>";
+			echo "</div>";
 		}
 
 		if(isset($_SESSION['valid'])) {
@@ -39,26 +55,27 @@ if(isset($_POST['submit'])) {
 		}
 	}
 } else {
-?>
-	<p><font size="+2">Login</font></p>
-	<form name="form1" method="post" action="">
-		<table width="75%" border="0">
+	echo "<div id=\"account-form\">";
+	echo "<form name=\"form1\" method=\"post\" action=\"login.php\">
+		<h4>Masuk Akun</h4>
+		<table width=\"100%\" border=\"0\">
 			<tr> 
-				<td width="10%">Kode_Supplier</td>
-				<td><input type="text" name="kode_supplier"></td>
+				<td><input type=\"text\" name=\"kode_supplier\" placeholder=\"Kode Supplier\"></td>
 			</tr>
 			<tr> 
-				<td>Password</td>
-				<td><input type="password" name="password"></td>
+				<td><input type=\"password\" name=\"password\" placeholder=\"Password\"></td>
 			</tr>
 			<tr> 
-				<td>&nbsp;</td>
-				<td><input type="submit" name="submit" value="Submit"></td>
+				<td><input type=\"submit\" name=\"submit\" value=\"Submit\"></td>
+			</tr>
+			<tr>
+				<td id=\"tanyaakun\">Belum memiliki akun? <a href=\"register.php\">Daftar disini.</a></td>
 			</tr>
 		</table>
 	</form>
-<?php
+	</div>";
 }
 ?>
+</div>
 </body>
 </html>

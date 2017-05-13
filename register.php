@@ -1,10 +1,17 @@
 <html>
 <head>
 	<title>Register Supplier</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="javascript/jquery.min.js"></script>
+	<script src="javascript/main.js"></script>
 </head>
 
 <body>
-<a href="index.php">Home</a> <br />
+<div id="header" style="text-align: center;margin-bottom: 30px;">
+	<a href="index.php"><img src="images/apotek-b.png" alt="Apotek-B"/></a>
+</div>
 <?php
 include("connection.php");
 
@@ -16,48 +23,50 @@ if(isset($_POST['submit'])) {
 	$pass = $_POST['password'];
 
 	if($kode == "" || $pass == "" || $name == "" || $notelp == "" || $almt == "") {
-		echo "All fields should be filled. Either one or many fields are empty.";
+		echo "<div id='account-form'>";
+		echo "<div class='alert alert-danger'>Semua field harus diisi. Beberapa field ditemukan kosong.</div>";
 		echo "<br/>";
-		echo "<a href='register.php'>Go back</a>";
+		echo "<a href='register.php'>Kembali</a>";
+		echo "</div>";
 	} else {
 		mysqli_query($mysqli, "INSERT INTO supplier(kd_supplier, nama_supplier, no_telp, alamat_kantor, password) VALUES('$kode', '$name', '$notelp', '$almt', md5('$pass'))")
 			or die("Could not execute the insert query.");
-			
-		echo "Registration successfully";
+		echo "<div id=\"container\">";
+		echo "Pendaftaran akun berhasil!";
 		echo "<br/>";
 		echo "<a href='login.php'>Login</a>";
+		echo "</div>";
 	}
 } else {
 ?>
-	<p><font size="+2">Register Supplier</font></p>
-	<form name="form1" method="post" action="">
-		<table width="75%" border="0">
+	<div id="account-form" style="width:700px;">
+	<form name="form1" method="post" action="" >
+		<h4>Pendaftaran Akun Supplier</h4>
+		<br/>
+		<table width="100%" border="0">
 			<tr> 
-				<td width="10%">Kode</td>
-				<td><input type="text" name="kode"></td>
-			</tr>
+				<td width="100%">
+					<input type="text" name="kode" placeholder="Kode Supplier">
+				</td>
+			</tr>	
 			<tr> 
-				<td>Nama</td>
-				<td><input type="text" name="name"></td>
+				<td><input type="text" name="name" placeholder="Nama Lengkap"></td>
 			</tr>			
 			<tr> 
-				<td>No Hp</td>
-				<td><input type="text" name="notelp"></td>
+				<td><input type="text" name="notelp" placeholder="No. Telp"></td>
 			</tr>
 			<tr> 
-				<td>Alamat Kantor</td>
-				<td><input type="text" name="alamat"></td>
+				<td><textarea name="alamat" placeholder="Alamat Kantor"></textarea></td>
 			</tr>
 			<tr> 
-				<td>Password</td>
-				<td><input type="password" name="password"></td>
+				<td><input type="password" name="password" placeholder="Password"></td>
 			</tr>
-			<tr> 
-				<td>&nbsp;</td>
+			<tr>
 				<td><input type="submit" name="submit" value="Submit"></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 <?php
 }
 ?>

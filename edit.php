@@ -8,34 +8,36 @@ if(!isset($_SESSION['valid'])) {
 
 <?php
 // including the database connection file
+$judulHal = "Edit Data Obat";
 include_once("connection.php");
+include("header.php");
 
 if(isset($_POST['update']))
 {	
-	$id = $_POST['id'];
+	$kode_obat = $_POST['kode_obat'];
 	
-	$name = $_POST['name'];
-	$qty = $_POST['qty'];
-	$price = $_POST['price'];	
+	$nama_obat = $_POST['nama_obat'];
+	$stok = $_POST['stok'];
+	$harga = $_POST['harga'];	
 	
 	// checking empty fields
-	if(empty($name) || empty($qty) || empty($price)) {
+	if(empty($nama_obat) || empty($stok) || empty($harga)) {
 				
-		if(empty($name)) {
+		if(empty($nama_obat)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 		
-		if(empty($qty)) {
+		if(empty($stok)) {
 			echo "<font color='red'>Quantity field is empty.</font><br/>";
 		}
 		
-		if(empty($price)) {
+		if(empty($harga)) {
 			echo "<font color='red'>Price field is empty.</font><br/>";
 		}		
 	} else {	
 		//updating the table
-		$result = mysqli_query($mysqli, "UPDATE products SET name='$name', qty='$qty', price='$price' WHERE id=$id");
-		
+		$result = mysqli_query($mysqli, "UPDATE obat SET nama_obat='$nama_obat', stok='$stok', harga='$harga' WHERE kode_obat='$kode_obat'");
+		echo "UPDATE obat SET nama_obat='$nama_obat', stok='$stok', harga='$harga' WHERE kode_obat='$kode_obat'";
 		//redirectig to the display page. In our case, it is view.php
 		header("Location: view.php");
 	}
@@ -43,46 +45,41 @@ if(isset($_POST['update']))
 ?>
 <?php
 //getting id from url
-$id = $_GET['id'];
-
+$id = $_GET['kode_obat'];
+$kode_supplier = $_GET['id'];
 //selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM products WHERE id=$id");
-
-while($res = mysqli_fetch_array($result))
+$result = mysqli_query($mysqli, "SELECT * FROM obat WHERE kode_obat='$id' AND kd_supplier='$kode_supplier'");
+if($res = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
-	$name = $res['name'];
-	$qty = $res['qty'];
-	$price = $res['price'];
+	$name = $res['nama_obat'];
+	$stok = $res['stok'];
+	$harga = $res['harga'];
 }
 ?>
-<html>
-<head>	
-	<title>Edit Data</title>
-</head>
-
-<body>
-	<a href="index.php">Home</a> | <a href="view.php">View Products</a> | <a href="logout.php">Logout</a>
+<div id="content">
+	<a class="btn btn-primary" href="index.php">Home</a> / <a class="btn btn-primary" href="view.php">View Products</a>
 	<br/><br/>
 	
 	<form name="form1" method="post" action="edit.php">
 		<table border="0">
 			<tr> 
 				<td>Name</td>
-				<td><input type="text" name="name" value="<?php echo $name;?>"></td>
+				<td><input class="form-control" type="text" name="nama_obat" value="<?php echo $name;?>"></td>
 			</tr>
 			<tr> 
 				<td>Quantity</td>
-				<td><input type="text" name="qty" value="<?php echo $qty;?>"></td>
+				<td><input class="form-control" type="number" name="stok" value="<?php echo $stok;?>"></td>
 			</tr>
 			<tr> 
 				<td>Price</td>
-				<td><input type="text" name="price" value="<?php echo $price;?>"></td>
+				<td><input class="form-control" type="text" name="harga" value="<?php echo $harga;?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-				<td><input type="submit" name="update" value="Update"></td>
+				<td><input class="form-control" type="hidden" name="kode_obat" value=<?php echo $_GET['kode_obat'];?>></td>
+				<td><input class="btn btn-primary" type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>
